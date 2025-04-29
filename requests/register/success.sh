@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Registro bem-sucedido:"
-curl -X POST http://localhost:3000/api/register \
+curl -X POST https://atividade-iv-v1-1mc1sbcom-yanchagas04s-projects.vercel.app/api/register \
   -H "Content-Type: application/json" \
   -d '{
     "name": "John Doe",
