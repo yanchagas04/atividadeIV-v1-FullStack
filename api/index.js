@@ -2,11 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const connectDB = require('./src/config/db');
-const authRoutes = require('./src/routes/auth.routes');
-const protectedRoutes = require('./src/routes/protected.routes');
-const errorMiddleware = require('./src/middlewares/error.middleware');
-const logger = require('./src/services/logger.service');
+const connectDB = require('../src/config/db');
+const authRoutes = require('../src/routes/auth.routes');
+const protectedRoutes = require('../src/routes/protected.routes');
+const errorMiddleware = require('../src/middlewares/error.middleware');
+const logger = require('../src/services/logger.service');
 
 const app = express();
 
