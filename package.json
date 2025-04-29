@@ -1,7 +1,7 @@
 {
-  "name": "jwt-auth-app",
+  "name": "Express com MongoDB e JWT",
   "version": "1.0.0",
-  "description": "Node.js backend with JWT authentication",
+  "description": "Backend em Express com banco MongoDB e autenticação JWT",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
