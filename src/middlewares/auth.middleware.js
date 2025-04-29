@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const logger = require('../services/logger.service');
 const ErrorResponse = require('../utils/errorResponse');
 
 const protect = async (req, res, next) => {
@@ -10,7 +9,7 @@ const protect = async (req, res, next) => {
   }
   
   if (!token) {
-    logger.warn('Attempt to access protected route without token');
+    console.log('Attempt to access protected route without token');
     return next(new ErrorResponse('Acesso não autorizado', 401));
   }
   
@@ -19,7 +18,7 @@ const protect = async (req, res, next) => {
     req.user = { id: decoded.id, name: decoded.name, email: decoded.email };
     next();
   } catch (error) {
-    logger.error(`JWT verification error: ${error.message}`);
+    console.log(`JWT verification error: ${error.message}`);
     next(new ErrorResponse('Token inválido', 401));
   }
 };

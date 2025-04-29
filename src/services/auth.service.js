@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const User = require('../database/models/User');
-const logger = require('./logger.service');
 const ErrorResponse = require('../utils/errorResponse');
 
 const registerUser = async (name, email, password) => {

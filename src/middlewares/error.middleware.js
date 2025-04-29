@@ -1,10 +1,8 @@
-const logger = require('../services/logger.service');
-
 const errorHandler = (err, req, res, next) => {
   let error = { ...err };
   error.message = err.message;
   
-  logger.error(`${err.statusCode || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+  console.log(`${err.statusCode || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
   
   if (err.name === 'CastError') {
     const message = `Recurso não encontrado`;

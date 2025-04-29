@@ -6,7 +6,6 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth.routes');
 const protectedRoutes = require('./routes/protected.routes');
 const errorMiddleware = require('./middlewares/error.middleware');
-const logger = require('./services/logger.service');
 
 const app = express();
 
@@ -26,7 +25,7 @@ app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  logger.info(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
 
 module.exports = app;
