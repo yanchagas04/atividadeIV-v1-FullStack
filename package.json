@@ -4,8 +4,8 @@
   "description": "Backend em Express com banco MongoDB e autenticação JWT",
   "main": "api/index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
