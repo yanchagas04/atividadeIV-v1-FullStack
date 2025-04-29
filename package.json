@@ -2,10 +2,10 @@
   "name": "Express com MongoDB e JWT",
   "version": "1.0.0",
   "description": "Backend em Express com banco MongoDB e autenticação JWT",
-  "main": "api/index.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node api/index.js",
-    "dev": "nodemon api/index.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
