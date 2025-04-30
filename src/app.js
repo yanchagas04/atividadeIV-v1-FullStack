@@ -16,7 +16,8 @@ app.use(morgan('dev'));
 connectDB();
 
 app.get('/', (req, res) => {
-  res.send('Home route!');
+  const resp = { message: 'Hello World!' };
+  res.json(resp).status(200);
 });
 app.use('/api', authRoutes);
 app.use('/api', protectedRoutes);
