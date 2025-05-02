@@ -42,4 +42,4 @@ Este é um projeto backend construído com Node.js, Express e MongoDB, fornecend
 
 ## Vídeo Explicativo
 
-[EM BREVE...]()
+[Vídeo de Execução](https://youtu.be/_grljxjmsUE)
