@@ -1,0 +1,93 @@
+const FilmeService = require('../services/filme.service');
+
+const getFilmes = async (req, res) => {
+    const filmes = await FilmeService.getFilmes();
+    if (!filmes || filmes.length === 0) {
+      return res.status(404).json({ success: false, message: 'Filmes não encontrados' });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: 'Acesso autorizado',
+        filmes: filmes
+      });
+    }
+};
+
+const createFilme = async (req, res) => {
+    const { title, description } = req.body;
+    const filme = FilmeService.createFilme(title, description, false);
+    if (!filme) {
+      return res.status(500).json({ success: false, message: 'Erro ao criar filme' });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: 'Acesso autorizado',
+        filme: filme
+      });
+    }
+};
+
+const updateFilme = async (req, res) => {
+    const { id } = req.params.id;
+    const { title, description, watched } = req.body;
+    const filme = FilmeService.updateFilme(id, title, description, watched);
+    res.status(200).json({
+      success: true,
+      message: 'Acesso autorizado',
+      filme: filme
+    });
+};
+
+const deleteFilme = async (req, res) => {
+    const { id } = req.params.id;
+    const filme = FilmeService.deleteFilme(id);
+    res.status(200).json({
+      success: true,
+      message: 'Acesso autorizado',
+      filme: filme
+    });
+};
+
+const updateWatchedFilme = async (req, res) => {
+    const { id } = req.params.id;
+    const { watched } = req.body;
+    const filme = FilmeService.updateWatchedFilme(id, watched);
+    res.status(200).json({
+      success: true,
+      message: 'Acesso autorizado',
+      filme: filme
+    });
+};
+
+const updateNameFilme = async (req, res) => {
+    const { id } = req.params.id;
+    const { name } = req.body;
+    const filme = FilmeService.updateNameFilme(id, name);
+    res.status(200).json({
+      success: true,
+      message: 'Acesso autorizado',
+      filme: filme
+    });
+};
+
+const updateDescriptionFilme = async (req, res) => {
+    const { id } = req.params.id;
+    const { description } = req.body;
+    const filme = FilmeService.updateDescriptionFilme(id, description);
+    res.status(200).json({
+      success: true,
+      message: 'Acesso autorizado',
+      filme: filme
+    });
+};
+  
+module.exports = {
+  getFilmes,
+  createFilme,
+  updateFilme,
+  deleteFilme,
+  updateNameFilme,
+  updateDescriptionFilme,
+  updateWatchedFilme
+};
+  
