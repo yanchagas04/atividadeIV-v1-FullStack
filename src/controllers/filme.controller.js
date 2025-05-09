@@ -47,55 +47,23 @@ const updateFilme = async (req, res) => {
 };
 
 const deleteFilme = async (req, res) => {
-    const { id } = req.params.id;
-    const filme = FilmeService.deleteFilme(id);
+  try {
+    const id = req.params.id;
+    const filme = await FilmeService.deleteFilme(id);
     res.status(200).json({
       success: true,
       message: 'Acesso autorizado',
       filme: filme
     });
-};
-
-const updateWatchedFilme = async (req, res) => {
-    const { id } = req.params.id;
-    const { watched } = req.body;
-    const filme = FilmeService.updateWatchedFilme(id, watched);
-    res.status(200).json({
-      success: true,
-      message: 'Acesso autorizado',
-      filme: filme
-    });
-};
-
-const updateNameFilme = async (req, res) => {
-    const { id } = req.params.id;
-    const { name } = req.body;
-    const filme = FilmeService.updateNameFilme(id, name);
-    res.status(200).json({
-      success: true,
-      message: 'Acesso autorizado',
-      filme: filme
-    });
-};
-
-const updateDescriptionFilme = async (req, res) => {
-    const { id } = req.params.id;
-    const { description } = req.body;
-    const filme = FilmeService.updateDescriptionFilme(id, description);
-    res.status(200).json({
-      success: true,
-      message: 'Acesso autorizado',
-      filme: filme
-    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: 'Erro ao deletar filme' });
+  }
 };
   
 module.exports = {
   getFilmes,
   createFilme,
   updateFilme,
-  deleteFilme,
-  updateNameFilme,
-  updateDescriptionFilme,
-  updateWatchedFilme
+  deleteFilme
 };
   

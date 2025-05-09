@@ -28,7 +28,6 @@ const createFilme = async (title, description, watched) => {
 const updateFilme = async (id, title, description, watched) => {
   try {
     const filme = await Filme.findOneAndUpdate({ id }, { title, description, watched }, { new: true });
-    console.log(filme);
     return filme;
   } catch (error) {
     throw new ErrorResponse('Erro ao atualizar filme', 500);
@@ -44,39 +43,9 @@ const deleteFilme = async (id) => {
   }
 };
 
-const updateNameFilme = async (id, name) => {
-  try {
-    const filme = await Filme.findOneAndUpdate({ id }, { name }, { new: true });
-    return filme;
-  } catch (error) {
-    throw new ErrorResponse('Erro ao atualizar filme', 500);
-  }
-};
-
-const updateDescriptionFilme = async (id, description) => {
-  try {
-    const filme = await Filme.findOneAndUpdate({ id }, { description }, { new: true });
-    return filme;
-  } catch (error) {
-    throw new ErrorResponse('Erro ao atualizar filme', 500);
-  }
-};
-
-const updateWatchedFilme = async (id, watched) => {
-  try {
-    const filme = await Filme.findOneAndUpdate({ id }, { watched }, { new: true });
-    return filme;
-  } catch (error) {
-    throw new ErrorResponse('Erro ao atualizar filme', 500);
-  }
-};
-
 module.exports = {
   getFilmes,
   createFilme,
   updateFilme,
-  deleteFilme,
-  updateNameFilme,
-  updateDescriptionFilme,
-  updateWatchedFilme
+  deleteFilme
 }
