@@ -1,6 +1,7 @@
 const FilmeService = require('../services/filme.service');
 
 const getFilmes = async (req, res) => {
+  try {
     const filmes = await FilmeService.getFilmes();
     if (!filmes || filmes.length === 0) {
       return res.status(404).json({ success: false, message: 'Filmes não encontrados' });
@@ -11,6 +12,9 @@ const getFilmes = async (req, res) => {
         filmes: filmes
       });
     }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: 'Erro ao buscar filmes' });
+  }
 };
 
 const createFilme = async (req, res) => {
@@ -28,14 +32,18 @@ const createFilme = async (req, res) => {
 };
 
 const updateFilme = async (req, res) => {
-    const { id } = req.params.id;
+  try {
+    const id = req.params.id;
     const { title, description, watched } = req.body;
-    const filme = FilmeService.updateFilme(id, title, description, watched);
+    const filme = await FilmeService.updateFilme(id, title, description, watched);
     res.status(200).json({
       success: true,
       message: 'Acesso autorizado',
       filme: filme
     });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: 'Erro ao atualizar filme' });
+  }
 };
 
 const deleteFilme = async (req, res) => {

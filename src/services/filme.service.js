@@ -27,7 +27,8 @@ const createFilme = async (title, description, watched) => {
 
 const updateFilme = async (id, title, description, watched) => {
   try {
-    const filme = await Filme.findOneAndUpdate({ id }, { title, description, genre, year, watched }, { new: true });
+    const filme = await Filme.findOneAndUpdate({ id }, { title, description, watched }, { new: true });
+    console.log(filme);
     return filme;
   } catch (error) {
     throw new ErrorResponse('Erro ao atualizar filme', 500);
