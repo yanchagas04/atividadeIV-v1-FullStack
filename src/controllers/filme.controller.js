@@ -15,7 +15,7 @@ const getFilmes = async (req, res) => {
 
 const createFilme = async (req, res) => {
     const { title, description } = req.body;
-    const filme = FilmeService.createFilme(title, description, false);
+    const filme = await FilmeService.createFilme(title, description, false);
     if (!filme) {
       return res.status(500).json({ success: false, message: 'Erro ao criar filme' });
     } else {

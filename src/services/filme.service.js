@@ -16,9 +16,11 @@ const createFilme = async (title, description, watched) => {
   console.log(title, description, watched);
   const id = uuid.v4();
   try {
-    const filme = await Filme.create({ id, title, description, watched });
+    const filme = Filme({id, title, description, watched});
+    filme.save();
     return filme;
   } catch (error) {
+    console.log(error);
     throw new ErrorResponse('Erro ao criar filme', 500);
   }
 };
