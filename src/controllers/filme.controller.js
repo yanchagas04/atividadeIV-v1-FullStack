@@ -59,11 +59,26 @@ const deleteFilme = async (req, res) => {
     return res.status(500).json({ success: false, message: 'Erro ao deletar filme' });
   }
 };
+
+const getFilme = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const filme = await FilmeService.getFilme(id);
+    res.status(200).json({
+      success: true,
+      message: 'Acesso autorizado',
+      filme: filme
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: 'Erro ao buscar filme' });
+  }
+};
   
 module.exports = {
   getFilmes,
   createFilme,
   updateFilme,
-  deleteFilme
+  deleteFilme,
+  getFilme
 };
   

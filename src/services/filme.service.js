@@ -4,8 +4,7 @@ const uuid = require('uuid');
 
 const getFilmes = async () => {
   try {
-    const filmes = await Filme.find();
-    console.log(filmes);
+    const filmes = await Filme.find({}, {"createdAt": false, "updatedAt": false, "__v": false, "_id": false});
     return filmes;
   } catch (error) {
     throw new ErrorResponse('Erro ao buscar filmes', 500);
@@ -20,7 +19,6 @@ const createFilme = async (title, description, watched) => {
     filme.save();
     return filme;
   } catch (error) {
-    console.log(error);
     throw new ErrorResponse('Erro ao criar filme', 500);
   }
 };
@@ -43,9 +41,20 @@ const deleteFilme = async (id) => {
   }
 };
 
+const getFilme = async (id) => {
+  try {
+    const filme = await Filme.findOne({ id }, {"createdAt": false, "updatedAt": false, "__v": false, "_id": false});
+    return filme;
+  } catch (error) {
+    throw new ErrorResponse('Erro ao buscar filme', 500);
+  }
+}
+
+
 module.exports = {
   getFilmes,
   createFilme,
   updateFilme,
-  deleteFilme
+  deleteFilme,
+  getFilme
 }
