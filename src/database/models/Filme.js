@@ -20,6 +20,10 @@ const FilmeSchema = new mongoose.Schema({
     type: Boolean,
     required: [true, 'Por favor, informe se foi assistido'],
     trim: true
+  },
+  userId: {
+    type: String,
+    required: [true, 'Por favor, informe um id de usuário'],
   }
 }, {
   timestamps: true

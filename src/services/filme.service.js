@@ -11,11 +11,11 @@ const getFilmes = async () => {
   }
 };
 
-const createFilme = async (title, description, watched) => {
-  console.log(title, description, watched);
+const createFilme = async (title, description, watched, userId) => {
+  console.log(title, description, watched, userId);
   const id = uuid.v4();
   try {
-    const filme = Filme({id, title, description, watched});
+    const filme = Filme({id, title, description, watched, userId});
     filme.save();
     return filme;
   } catch (error) {
@@ -50,11 +50,21 @@ const getFilme = async (id) => {
   }
 }
 
+const getFilmesUsuario = async (id) => {
+  try {
+    const filmes = await Filme.find({ userId: id }, {"createdAt": false, "updatedAt": false, "__v": false, "_id": false});
+    return filmes;
+  } catch (error) {
+    throw new ErrorResponse('Erro ao buscar filmes', 500);
+  }
+}
+
 
 module.exports = {
   getFilmes,
   createFilme,
   updateFilme,
   deleteFilme,
-  getFilme
+  getFilme,
+  getFilmesUsuario
 }
