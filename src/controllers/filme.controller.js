@@ -18,8 +18,9 @@ const getFilmes = async (req, res) => {
 };
 
 const createFilme = async (req, res) => {
-    const { title, description, id } = req.body;
-    const filme = await FilmeService.createFilme(title, description, false, id);
+    const { title, description, userId } = req.body;
+    console.log(title, description, userId);
+    const filme = await FilmeService.createFilme(title, description, false, userId);
     if (!filme) {
       return res.status(500).json({ success: false, message: 'Erro ao criar filme' });
     } else {
@@ -63,6 +64,7 @@ const deleteFilme = async (req, res) => {
 const getFilme = async (req, res) => {
   try {
     const id = req.params.id;
+    console.log(id);
     const filme = await FilmeService.getFilme(id);
     res.status(200).json({
       success: true,
@@ -75,8 +77,9 @@ const getFilme = async (req, res) => {
 };
 
 const getFilmesUsuario = async (req, res) => {
-  const id = req.params.id;
   try {
+    const id = req.params.id;
+    console.log(id);
     const filmes = await FilmeService.getFilmesUsuario(id);
     res.status(200).json({
       success: true,
